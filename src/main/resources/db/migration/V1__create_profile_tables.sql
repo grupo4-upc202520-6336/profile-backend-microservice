@@ -1,6 +1,6 @@
--- Tabla de perfiles de Distribuidores
+-- SQL NUEVO (CORRECTO PARA TU ENTIDAD)
 CREATE TABLE distributors (
-                              id VARCHAR(255) NOT NULL PRIMARY KEY,
+                              id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY, -- CAMBIADO
                               company_name VARCHAR(255),
                               full_name VARCHAR(255),
                               ruc VARCHAR(20),
@@ -10,13 +10,12 @@ CREATE TABLE distributors (
                               created_at TIMESTAMP,
                               updated_at TIMESTAMP,
 
-    -- De nuevo, solo el ID, sin Foreign Key
-                              user_id VARCHAR(255) NOT NULL UNIQUE -- Asumo que un usuario solo puede tener un perfil de distribuidor
+    -- Esta columna SIGUE SIENDO VARCHAR, lo cual es correcto
+                              user_id BIGINT NOT NULL UNIQUE
 );
 
--- Tabla de perfiles de Productores
 CREATE TABLE agricultural_producers (
-                                        id VARCHAR(255) NOT NULL PRIMARY KEY,
+                                        id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY, -- CAMBIADO
                                         full_name VARCHAR(255),
                                         dni VARCHAR(20),
                                         phone VARCHAR(20),
@@ -25,6 +24,6 @@ CREATE TABLE agricultural_producers (
                                         created_at TIMESTAMP,
                                         updated_at TIMESTAMP,
 
-    -- De nuevo, solo el ID, sin Foreign Key
-                                        user_id VARCHAR(255) NOT NULL UNIQUE -- Asumo que un usuario solo puede tener un perfil de productor
+    -- Esta columna SIGUE SIENDO VARCHAR, lo cual es correcto
+                                        user_id BIGINT NOT NULL UNIQUE
 );
