@@ -1,5 +1,5 @@
 package com.agrocontrol.backend.profiles.domain.model.commands;
 
 public record CreateAgriculturalProducerCommand(String fullName, String city, String country,
-                                                String phone, String dni) {
+                                                String phone, String dni, Long userId) {
 }

@@ -8,5 +8,5 @@ import com.agrocontrol.backend.profiles.domain.model.commands.CreateAgricultural
 import java.util.Optional;
 
 public interface AgriculturalProducerCommandService {
-    Optional<AgriculturalProducer> handle(CreateAgriculturalProducerCommand command, Long userId);
+    Optional<AgriculturalProducer> handle(CreateAgriculturalProducerCommand command);
 }

@@ -16,8 +16,9 @@ public class AgriculturalProducerCommandServiceImpl implements AgriculturalProdu
         this.agriculturalProducerRepository = agriculturalProducerRepository;
     }
 
+    // CORREGIDO: Se elimina 'Long userId' de los parámetros para coincidir con la interfaz
     @Override
-    public Optional<AgriculturalProducer> handle(CreateAgriculturalProducerCommand command, Long userId) {
+    public Optional<AgriculturalProducer> handle(CreateAgriculturalProducerCommand command) {
 
         if (agriculturalProducerRepository.existsByPhone_Phone(command.phone())) {
             throw new IllegalArgumentException("Phone already exists");
@@ -26,7 +27,10 @@ public class AgriculturalProducerCommandServiceImpl implements AgriculturalProdu
         if (agriculturalProducerRepository.existsByDni_Dni(command.dni())) {
             throw new IllegalArgumentException("DNI already exists");
         }
-        var agriculturalProducer = new AgriculturalProducer(command, userId);
+
+        // CORREGIDO: Usamos command.userId() porque el ID ahora viaja dentro del record
+        var agriculturalProducer = new AgriculturalProducer(command, command.userId());
+
         var createdAgriculturalProducer = agriculturalProducerRepository.save(agriculturalProducer);
         return Optional.of(createdAgriculturalProducer);
     }

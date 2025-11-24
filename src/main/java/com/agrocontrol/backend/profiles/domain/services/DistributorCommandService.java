@@ -8,5 +8,5 @@ import com.agrocontrol.backend.profiles.domain.model.commands.CreateDistributorC
 import java.util.Optional;
 
 public interface DistributorCommandService {
-    Optional<Distributor> handle(CreateDistributorCommand command, Long userId);
+    Optional<Distributor> handle(CreateDistributorCommand command);
 }

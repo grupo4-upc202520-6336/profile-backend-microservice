@@ -16,8 +16,10 @@ public class DistributorCommandServiceImpl implements DistributorCommandService 
         this.distributorRepository = distributorRepository;
     }
 
+    // CORREGIDO: Eliminado el argumento 'Long userId'
     @Override
-    public Optional<Distributor> handle(CreateDistributorCommand command, Long userId) {
+    public Optional<Distributor> handle(CreateDistributorCommand command) {
+
         if (distributorRepository.existsByPhone_Phone(command.phone())){
             throw new IllegalArgumentException("Phone already exists");
         }
@@ -26,7 +28,9 @@ public class DistributorCommandServiceImpl implements DistributorCommandService 
             throw new IllegalArgumentException("Ruc already exists");
         }
 
-        var distributor = new Distributor(command, userId);
+        // CORREGIDO: Usamos command.userId() del record
+        var distributor = new Distributor(command, command.userId());
+
         var createdDistributor = distributorRepository.save(distributor);
         return Optional.of(createdDistributor);
     }
